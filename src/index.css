@@ -8,35 +8,69 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Railway Control Room Theme - Professional Dark */
+    --background: 222 47% 8%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 222 47% 10%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 222 47% 15%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 222 47% 15%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 222 47% 8%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 222 47% 20%;
+    --input: 222 47% 15%;
+    --ring: 217 91% 60%;
 
-    --radius: 0.5rem;
+    /* Railway Signal Colors */
+    --signal-red: 0 84% 60%;
+    --signal-yellow: 45 93% 58%;
+    --signal-green: 120 60% 50%;
+    
+    /* Status Colors */
+    --status-running: 120 60% 50%;
+    --status-delayed: 45 93% 58%;
+    --status-stopped: 0 84% 60%;
+    --status-maintenance: 280 60% 60%;
+    
+    /* Control Panel */
+    --control-bg: 222 47% 12%;
+    --control-border: 222 47% 25%;
+    --control-hover: 222 47% 18%;
+    
+    /* Data Visualization */
+    --chart-primary: 217 91% 60%;
+    --chart-secondary: 120 60% 50%;
+    --chart-tertiary: 45 93% 58%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(217 91% 45%) 100%);
+    --gradient-signal: linear-gradient(90deg, hsl(120 60% 50%) 0%, hsl(45 93% 58%) 50%, hsl(0 84% 60%) 100%);
+    --gradient-control: linear-gradient(180deg, hsl(222 47% 12%) 0%, hsl(222 47% 8%) 100%);
+    
+    /* Shadows and Effects */
+    --shadow-control: 0 8px 32px hsl(222 47% 4% / 0.6);
+    --shadow-card: 0 4px 16px hsl(222 47% 4% / 0.4);
+    --glow-primary: 0 0 20px hsl(217 91% 60% / 0.3);
+    --glow-signal-green: 0 0 15px hsl(120 60% 50% / 0.4);
+    --glow-signal-red: 0 0 15px hsl(0 84% 60% / 0.4);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +135,118 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Control Panel Components */
+  .control-panel {
+    @apply bg-[hsl(var(--control-bg))] border border-[hsl(var(--control-border))] rounded-lg;
+    box-shadow: var(--shadow-control);
+  }
+  
+  .control-button {
+    @apply bg-[hsl(var(--control-bg))] hover:bg-[hsl(var(--control-hover))] 
+           border border-[hsl(var(--control-border))] transition-all duration-200;
+  }
+  
+  /* Signal Status */
+  .signal-green {
+    @apply text-[hsl(var(--signal-green))];
+    box-shadow: var(--glow-signal-green);
+  }
+  
+  .signal-red {
+    @apply text-[hsl(var(--signal-red))];
+    box-shadow: var(--glow-signal-red);
+  }
+  
+  .signal-yellow {
+    @apply text-[hsl(var(--signal-yellow))];
+  }
+  
+  /* Train Status */
+  .status-running {
+    @apply text-[hsl(var(--status-running))] bg-[hsl(var(--status-running)/0.1)] 
+           border border-[hsl(var(--status-running)/0.3)];
+  }
+  
+  .status-delayed {
+    @apply text-[hsl(var(--status-delayed))] bg-[hsl(var(--status-delayed)/0.1)] 
+           border border-[hsl(var(--status-delayed)/0.3)];
+  }
+  
+  .status-stopped {
+    @apply text-[hsl(var(--status-stopped))] bg-[hsl(var(--status-stopped)/0.1)] 
+           border border-[hsl(var(--status-stopped)/0.3)];
+  }
+  
+  /* Animated Elements */
+  .pulse-glow {
+    animation: pulse-glow 2s infinite;
+  }
+  
+  .train-move {
+    animation: train-move 3s linear infinite;
+  }
+  
+  .data-flow {
+    animation: data-flow 1.5s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-gradient-control {
+    background: var(--gradient-control);
+  }
+  
+  .bg-gradient-signal {
+    background: var(--gradient-signal);
+  }
+}
+
+/* Custom Keyframes */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes train-move {
+  0% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes data-flow {
+  0% {
+    opacity: 0.3;
+    transform: translateY(-5px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 0.3;
+    transform: translateY(5px);
   }
 }

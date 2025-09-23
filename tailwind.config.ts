@@ -47,6 +47,28 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Railway Control Theme
+        signal: {
+          red: "hsl(var(--signal-red))",
+          yellow: "hsl(var(--signal-yellow))",
+          green: "hsl(var(--signal-green))",
+        },
+        status: {
+          running: "hsl(var(--status-running))",
+          delayed: "hsl(var(--status-delayed))",
+          stopped: "hsl(var(--status-stopped))",
+          maintenance: "hsl(var(--status-maintenance))",
+        },
+        control: {
+          bg: "hsl(var(--control-bg))",
+          border: "hsl(var(--control-border))",
+          hover: "hsl(var(--control-hover))",
+        },
+        chart: {
+          primary: "hsl(var(--chart-primary))",
+          secondary: "hsl(var(--chart-secondary))",
+          tertiary: "hsl(var(--chart-tertiary))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -80,10 +102,59 @@ export default {
             height: "0",
           },
         },
+        "pulse-glow": {
+          "0%, 100%": {
+            opacity: "1",
+            transform: "scale(1)",
+          },
+          "50%": {
+            opacity: "0.8",
+            transform: "scale(1.05)",
+          },
+        },
+        "train-move": {
+          "0%": {
+            transform: "translateX(-10px)",
+          },
+          "50%": {
+            transform: "translateX(10px)",
+          },
+          "100%": {
+            transform: "translateX(-10px)",
+          },
+        },
+        "data-flow": {
+          "0%": {
+            opacity: "0.3",
+            transform: "translateY(-5px)",
+          },
+          "50%": {
+            opacity: "1",
+            transform: "translateY(0px)",
+          },
+          "100%": {
+            opacity: "0.3",
+            transform: "translateY(5px)",
+          },
+        },
+        "fade-in": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(10px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "pulse-glow": "pulse-glow 2s infinite",
+        "train-move": "train-move 3s linear infinite",
+        "data-flow": "data-flow 1.5s ease-in-out infinite",
+        "fade-in": "fade-in 0.3s ease-out",
       },
     },
   },
