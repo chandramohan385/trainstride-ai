@@ -7,7 +7,7 @@ import { TrainStatusCard } from "./TrainStatusCard";
 import { TrackVisualization } from "./TrackVisualization";
 import { ControlPanel } from "./ControlPanel";
 import { PerformanceMetrics } from "./PerformanceMetrics";
-import { AlertTriangle, Activity, Clock, Users, Train, Settings, Bell } from "lucide-react";
+import { AlertTriangle, Activity, Clock, Users } from "lucide-react";
 
 interface Train {
   id: string;
@@ -86,39 +86,30 @@ export function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Blue Navigation Bar */}
-      <nav className="bg-primary text-primary-foreground shadow-lg">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-4">
-              <Train className="h-8 w-8" />
-              <h1 className="text-xl font-bold">Railway Traffic Control System</h1>
-              <Badge variant="secondary" className="ml-4">
-                <Activity className="w-4 h-4 mr-1" />
-                System Online
-              </Badge>
-            </div>
-            <div className="flex items-center space-x-6">
-              <div className="flex items-center space-x-2">
-                <Clock className="h-5 w-5" />
-                <span className="text-sm font-mono">
-                  {currentTime.toLocaleTimeString()}
-                </span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Users className="h-5 w-5" />
-                <span className="text-sm">Controller: Admin</span>
-              </div>
-              <Bell className="h-5 w-5 cursor-pointer hover:text-accent transition-colors" />
-              <Settings className="h-5 w-5 cursor-pointer hover:text-accent transition-colors" />
-            </div>
-          </div>
+    <div className="min-h-screen bg-background p-4 space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-gradient-primary">
+            Railway Traffic Control System
+          </h1>
+          <p className="text-muted-foreground mt-1">
+            Intelligent Decision Support for Section Controllers
+          </p>
         </div>
-      </nav>
-
-      {/* Main Content */}
-      <div className="p-6 space-y-6">
+        <div className="flex items-center space-x-4">
+          <div className="text-right">
+            <p className="text-sm text-muted-foreground">Current Time</p>
+            <p className="text-lg font-mono font-semibold">
+              {currentTime.toLocaleTimeString()}
+            </p>
+          </div>
+          <Badge variant="outline" className="status-running">
+            <Activity className="w-4 h-4 mr-1" />
+            System Online
+          </Badge>
+        </div>
+      </div>
 
       {/* Status Overview */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -231,7 +222,6 @@ export function Dashboard() {
           <PerformanceMetrics trains={trains} />
         </TabsContent>
       </Tabs>
-      </div>
     </div>
   );
 }

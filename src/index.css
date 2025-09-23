@@ -8,33 +8,33 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Railway Control Room Theme - Professional Light */
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    /* Railway Control Room Theme - Professional Dark */
+    --background: 222 47% 8%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 222 47% 10%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 98%;
 
     --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 222 47% 8%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 222 47% 15%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 222 47% 15%;
+    --muted-foreground: 215 20% 65%;
 
     --accent: 217 91% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent-foreground: 222 47% 8%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
+    --border: 222 47% 20%;
+    --input: 222 47% 15%;
     --ring: 217 91% 60%;
 
     /* Railway Signal Colors */
@@ -49,9 +49,9 @@ All colors MUST be HSL.
     --status-maintenance: 280 60% 60%;
     
     /* Control Panel */
-    --control-bg: 0 0% 100%;
-    --control-border: 220 13% 91%;
-    --control-hover: 210 40% 96%;
+    --control-bg: 222 47% 12%;
+    --control-border: 222 47% 25%;
+    --control-hover: 222 47% 18%;
     
     /* Data Visualization */
     --chart-primary: 217 91% 60%;
@@ -61,11 +61,11 @@ All colors MUST be HSL.
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(217 91% 45%) 100%);
     --gradient-signal: linear-gradient(90deg, hsl(120 60% 50%) 0%, hsl(45 93% 58%) 50%, hsl(0 84% 60%) 100%);
-    --gradient-control: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
+    --gradient-control: linear-gradient(180deg, hsl(222 47% 12%) 0%, hsl(222 47% 8%) 100%);
     
     /* Shadows and Effects */
-    --shadow-control: 0 8px 32px hsl(0 0% 0% / 0.1);
-    --shadow-card: 0 4px 16px hsl(0 0% 0% / 0.1);
+    --shadow-control: 0 8px 32px hsl(222 47% 4% / 0.6);
+    --shadow-card: 0 4px 16px hsl(222 47% 4% / 0.4);
     --glow-primary: 0 0 20px hsl(217 91% 60% / 0.3);
     --glow-signal-green: 0 0 15px hsl(120 60% 50% / 0.4);
     --glow-signal-red: 0 0 15px hsl(0 84% 60% / 0.4);
