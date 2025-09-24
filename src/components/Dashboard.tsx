@@ -8,7 +8,6 @@ import { TrackVisualization } from "./TrackVisualization";
 import { ControlPanel } from "./ControlPanel";
 import { PerformanceMetrics } from "./PerformanceMetrics";
 import { AlertTriangle, Activity, Clock, Users } from "lucide-react";
-
 interface Train {
   id: string;
   number: string;
@@ -20,73 +19,62 @@ interface Train {
   priority: "high" | "medium" | "low";
   type: "express" | "local" | "freight" | "special";
 }
-
 export function Dashboard() {
-  const [trains, setTrains] = useState<Train[]>([
-    {
-      id: "1",
-      number: "12345",
-      name: "Rajdhani Express",
-      status: "running",
-      currentLocation: "Section A-B",
-      destination: "New Delhi",
-      delay: 0,
-      priority: "high",
-      type: "express"
-    },
-    {
-      id: "2", 
-      number: "56789",
-      name: "Local Passenger",
-      status: "delayed",
-      currentLocation: "Section B-C",
-      destination: "Mumbai Central",
-      delay: 15,
-      priority: "medium",
-      type: "local"
-    },
-    {
-      id: "3",
-      number: "98765",
-      name: "Freight Express",
-      status: "stopped",
-      currentLocation: "Yard D",
-      destination: "Chennai",
-      delay: 45,
-      priority: "low",
-      type: "freight"
-    },
-    {
-      id: "4",
-      number: "11223",
-      name: "Maintenance Special",
-      status: "maintenance",
-      currentLocation: "Section C-D",
-      destination: "Workshop",
-      delay: 0,
-      priority: "high",
-      type: "special"
-    }
-  ]);
-
+  const [trains, setTrains] = useState<Train[]>([{
+    id: "1",
+    number: "12345",
+    name: "Rajdhani Express",
+    status: "running",
+    currentLocation: "Section A-B",
+    destination: "New Delhi",
+    delay: 0,
+    priority: "high",
+    type: "express"
+  }, {
+    id: "2",
+    number: "56789",
+    name: "Local Passenger",
+    status: "delayed",
+    currentLocation: "Section B-C",
+    destination: "Mumbai Central",
+    delay: 15,
+    priority: "medium",
+    type: "local"
+  }, {
+    id: "3",
+    number: "98765",
+    name: "Freight Express",
+    status: "stopped",
+    currentLocation: "Yard D",
+    destination: "Chennai",
+    delay: 45,
+    priority: "low",
+    type: "freight"
+  }, {
+    id: "4",
+    number: "11223",
+    name: "Maintenance Special",
+    status: "maintenance",
+    currentLocation: "Section C-D",
+    destination: "Workshop",
+    delay: 0,
+    priority: "high",
+    type: "special"
+  }]);
   const [currentTime, setCurrentTime] = useState(new Date());
-
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
     return () => clearInterval(timer);
   }, []);
-
   const statusCounts = {
     running: trains.filter(t => t.status === "running").length,
     delayed: trains.filter(t => t.status === "delayed").length,
     stopped: trains.filter(t => t.status === "stopped").length,
     maintenance: trains.filter(t => t.status === "maintenance").length
   };
-
-  return (
-    <div className="min-h-screen bg-background p-4 space-y-6">
+  return <div className="min-h-screen bg-background p-4 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -175,7 +163,7 @@ export function Dashboard() {
         <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="track-view">Track View</TabsTrigger>
           <TabsTrigger value="train-status">Train Status</TabsTrigger>
-          <TabsTrigger value="control-panel">Control Panel</TabsTrigger>
+          <TabsTrigger value="control-panel">What-If Simulator</TabsTrigger>
           <TabsTrigger value="analytics">Analytics</TabsTrigger>
         </TabsList>
 
@@ -208,9 +196,7 @@ export function Dashboard() {
 
         <TabsContent value="train-status" className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {trains.map((train) => (
-              <TrainStatusCard key={train.id} train={train} />
-            ))}
+            {trains.map(train => <TrainStatusCard key={train.id} train={train} />)}
           </div>
         </TabsContent>
 
@@ -222,6 +208,5 @@ export function Dashboard() {
           <PerformanceMetrics trains={trains} />
         </TabsContent>
       </Tabs>
-    </div>
-  );
+    </div>;
 }
