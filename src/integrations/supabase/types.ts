@@ -14,7 +14,227 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      platforms: {
+        Row: {
+          assigned_train_id: string | null
+          capacity: number | null
+          created_at: string
+          id: string
+          platform_number: string
+          scheduled_arrival: string | null
+          scheduled_departure: string | null
+          station_code: string
+          station_name: string
+          status: Database["public"]["Enums"]["platform_status"]
+          track_number: string | null
+          updated_at: string
+        }
+        Insert: {
+          assigned_train_id?: string | null
+          capacity?: number | null
+          created_at?: string
+          id?: string
+          platform_number: string
+          scheduled_arrival?: string | null
+          scheduled_departure?: string | null
+          station_code: string
+          station_name: string
+          status?: Database["public"]["Enums"]["platform_status"]
+          track_number?: string | null
+          updated_at?: string
+        }
+        Update: {
+          assigned_train_id?: string | null
+          capacity?: number | null
+          created_at?: string
+          id?: string
+          platform_number?: string
+          scheduled_arrival?: string | null
+          scheduled_departure?: string | null
+          station_code?: string
+          station_name?: string
+          status?: Database["public"]["Enums"]["platform_status"]
+          track_number?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "platforms_assigned_train_id_fkey"
+            columns: ["assigned_train_id"]
+            isOneToOne: false
+            referencedRelation: "trains"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          full_name: string
+          id: string
+          role: string | null
+          station_code: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          full_name: string
+          id?: string
+          role?: string | null
+          station_code?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string
+          id?: string
+          role?: string | null
+          station_code?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      reports: {
+        Row: {
+          created_at: string
+          data: Json
+          generated_by: string | null
+          id: string
+          report_date: string
+          report_type: string
+        }
+        Insert: {
+          created_at?: string
+          data: Json
+          generated_by?: string | null
+          id?: string
+          report_date: string
+          report_type: string
+        }
+        Update: {
+          created_at?: string
+          data?: Json
+          generated_by?: string | null
+          id?: string
+          report_date?: string
+          report_type?: string
+        }
+        Relationships: []
+      }
+      signals: {
+        Row: {
+          created_at: string
+          id: string
+          is_automatic: boolean | null
+          last_changed_at: string | null
+          last_changed_by: string | null
+          latitude: number | null
+          location: string
+          longitude: number | null
+          section: string | null
+          signal_code: string
+          signal_name: string
+          state: Database["public"]["Enums"]["signal_state"]
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_automatic?: boolean | null
+          last_changed_at?: string | null
+          last_changed_by?: string | null
+          latitude?: number | null
+          location: string
+          longitude?: number | null
+          section?: string | null
+          signal_code: string
+          signal_name: string
+          state?: Database["public"]["Enums"]["signal_state"]
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_automatic?: boolean | null
+          last_changed_at?: string | null
+          last_changed_by?: string | null
+          latitude?: number | null
+          location?: string
+          longitude?: number | null
+          section?: string | null
+          signal_code?: string
+          signal_name?: string
+          state?: Database["public"]["Enums"]["signal_state"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      trains: {
+        Row: {
+          actual_arrival: string | null
+          actual_departure: string | null
+          created_at: string
+          current_location: string
+          delay_minutes: number | null
+          destination: string
+          id: string
+          latitude: number | null
+          longitude: number | null
+          origin: string
+          scheduled_arrival: string | null
+          scheduled_departure: string | null
+          speed_kmh: number | null
+          status: Database["public"]["Enums"]["train_status"]
+          train_name: string
+          train_number: string
+          train_type: Database["public"]["Enums"]["train_type"]
+          updated_at: string
+        }
+        Insert: {
+          actual_arrival?: string | null
+          actual_departure?: string | null
+          created_at?: string
+          current_location: string
+          delay_minutes?: number | null
+          destination: string
+          id?: string
+          latitude?: number | null
+          longitude?: number | null
+          origin: string
+          scheduled_arrival?: string | null
+          scheduled_departure?: string | null
+          speed_kmh?: number | null
+          status?: Database["public"]["Enums"]["train_status"]
+          train_name: string
+          train_number: string
+          train_type: Database["public"]["Enums"]["train_type"]
+          updated_at?: string
+        }
+        Update: {
+          actual_arrival?: string | null
+          actual_departure?: string | null
+          created_at?: string
+          current_location?: string
+          delay_minutes?: number | null
+          destination?: string
+          id?: string
+          latitude?: number | null
+          longitude?: number | null
+          origin?: string
+          scheduled_arrival?: string | null
+          scheduled_departure?: string | null
+          speed_kmh?: number | null
+          status?: Database["public"]["Enums"]["train_status"]
+          train_name?: string
+          train_number?: string
+          train_type?: Database["public"]["Enums"]["train_type"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +243,10 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      platform_status: "free" | "occupied" | "overdue"
+      signal_state: "green" | "yellow" | "red"
+      train_status: "running" | "delayed" | "stopped" | "maintenance"
+      train_type: "passenger" | "express" | "freight" | "special"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +373,11 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      platform_status: ["free", "occupied", "overdue"],
+      signal_state: ["green", "yellow", "red"],
+      train_status: ["running", "delayed", "stopped", "maintenance"],
+      train_type: ["passenger", "express", "freight", "special"],
+    },
   },
 } as const
